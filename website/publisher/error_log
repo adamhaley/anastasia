@@ -1,0 +1,2 @@
+[11-Sep-2003 10:55:58] PHP Fatal error:  input in flex scanner failed in /home/tricycle/public_html on line 1
+[11-Sep-2003 10:56:05] PHP Fatal error:  Cannot instantiate non-existent class:  tadmin in /home/tricycle/public_html/control/publish.php on line 5
