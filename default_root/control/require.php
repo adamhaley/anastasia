@@ -1,9 +1,9 @@
 <?php
 
-$path = "/www/testsite/control/";
-require "element/require.php";
-require "element/website/require.php";
-require "element/website/publisher/require.php";
+$path = getcwd();
+require "../../require.php";
+require "../../website/require.php";
+require "../../website/publisher/require.php";
 
 require $path . "bparray.php";
 require $path . "local.php";
