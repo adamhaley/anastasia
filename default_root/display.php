@@ -1,4 +1,4 @@
-<?
+<?php
 require "control/require.php";
 
 if(!$HTTP_GET_VARS[p]){

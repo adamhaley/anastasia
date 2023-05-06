@@ -1,5 +1,5 @@
 <?
-$pa = "/home/secrets/public_html/anastasia/";
+$pa = getcwd();
 
 require $pa . "keywords.php";
 require $pa . "/types/require.php";

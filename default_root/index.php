@@ -1,4 +1,4 @@
-<? 
+<?php 
 require "control/require.php";
 
 $p = new pages;
