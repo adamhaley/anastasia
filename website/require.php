@@ -1,4 +1,5 @@
-<?
+<?php
+
 $pa = "/home/secrets/public_html/anastasia/website/";
 require $pa . "pages.php";
 require $pa . "bplist.php";
@@ -16,4 +17,3 @@ require $pa . "orders.php";
 require $pa . "checkout.php";
 require $pa . "paginator.php";
 require $pa . "publisher/require.php";
-?>

@@ -1,10 +1,12 @@
-<?
-class bps extends blueprint {
+<?php
 
-	function bps(){
+class bps extends blueprint
+{
+    public function bps()
+    {
 
-	 	$props = array(
-			"local" => new local,
+        $props = array(
+            "local" => new local(),
                         "table" => "bps", //name the table the same as the class name
                         "manager_mask" => new mask(array("id","name")),
                         "fields" => array(
@@ -17,16 +19,16 @@ class bps extends blueprint {
                                                 "type" => "text",
                                                 "length" => "30"
                                                 )
-					)
-				);
-				$this->blueprint($props);	
-				return;
-			}
-			function get_elinks($pageid){
-				$page = $this->get_element($pageid);
-				$lpage = new linkedelement($this,$page->get_prop('id'));
-				return $lpage->get_elinks();
-			}
+                    )
+                );
+        $this->blueprint($props);
+        return;
+    }
+            public function get_elinks($pageid)
+            {
+                $page = $this->get_element($pageid);
+                $lpage = new linkedelement($this, $page->get_prop('id'));
+                return $lpage->get_elinks();
+            }
 
 }
-?>

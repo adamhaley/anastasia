@@ -1,10 +1,12 @@
-<?
-class templates extends blueprint {
+<?php
 
-	function templates(){
+class templates extends blueprint
+{
+    public function templates()
+    {
 
-	 	$props = array(
-			"local" => new local,
+        $props = array(
+            "local" => new local(),
                         "table" => "templates", //name the table the same as the class name
                         "manager_mask" => new mask(array("id","name","description")),
                         "fields" => array(
@@ -21,14 +23,13 @@ class templates extends blueprint {
                                                 "type" => "desc",
                                                 "length" => "200"
                                                 ),
-					"html_source" => array(
-						"type" => "desc",
-						"length" => "1000"
-						)
-					)
-				);
-				$this->blueprint($props);	
-				return;
-			}
+                    "html_source" => array(
+                        "type" => "desc",
+                        "length" => "1000"
+                        )
+                    )
+                );
+        $this->blueprint($props);
+        return;
+    }
 }
-?>

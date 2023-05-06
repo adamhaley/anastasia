@@ -14,11 +14,15 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/website',
     ]);
 
+    $rectorConfig->skip([
+        __DIR__ . '/vendor'
+    ]);
+
     // register a single rule
     $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
 
     // define sets of rules
-    //    $rectorConfig->sets([
-    //        LevelSetList::UP_TO_PHP_82
-    //    ]);
+    $rectorConfig->sets([
+        LevelSetList::UP_TO_PHP_82
+    ]);
 };

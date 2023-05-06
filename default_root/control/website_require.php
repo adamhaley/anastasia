@@ -1,4 +1,5 @@
-<?
+<?php
+
 $pa = "/php/element/website/";
 require $pa . "pages.php";
 require $pa . "bplist.php";
@@ -13,4 +14,3 @@ require $pa . "template_link.php";
 require $pa . "page_link.php";
 require $pa . "frontend.php";
 require $pa . "checkout.php";
-?>

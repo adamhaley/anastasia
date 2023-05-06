@@ -1,4 +1,5 @@
-<?
+<?php
+
 $pa = getcwd();
 
 require $pa . "keywords.php";
@@ -20,4 +21,3 @@ require $pa . "alphabetizer.php";
 require $pa . "numeralizer.php";
 require $pa . "multibpcart.php";
 require $pa . "xmlcart.php";
-?>

@@ -1,8 +1,11 @@
-<?
-class orders extends blueprint{
-	function orders(){
-		$this->blueprint(array("local" => new local));
-	 	$this->props = array(
+<?php
+
+class orders extends blueprint
+{
+    public function orders()
+    {
+        $this->blueprint(array("local" => new local()));
+        $this->props = array(
                         "table" => "orders",
                         "manager_mask" => new mask(array("id","name","email","card","card_exp","date_placed")),
                         "fields" => array(
@@ -21,19 +24,19 @@ class orders extends blueprint{
                                                 "type" => "text",
                                                 "length" =>"40"
                                                 ),
-					"card_exp" => array(
+                    "card_exp" => array(
                                                 "type" => "text",
                                                 "length" =>"20"
                                                 ),
-					"name" => array(
+                    "name" => array(
                                                 "type" => "text",
                                                 "length" => "20"
                                                 ),
-				 	"email" => array(
+                    "email" => array(
                                                 "type" => "text",
                                                 "length" => "20"
                                                 ),
-					"billing_address" => array(
+                    "billing_address" => array(
                                                 "type" => "text",
                                                 "length" => "20"
                                                 ),
@@ -65,19 +68,18 @@ class orders extends blueprint{
                                                 "type" => "text",
                                                 "length" =>"20"
                                                 ),
-					"recipient_name" => array(
+                    "recipient_name" => array(
                                                 "type" => "text",
                                                 "length" =>"20"
                                                 ),
-					"date_placed" => array(
-						"type" => "text",
-						"length" => "20"
-						),
-					"archive" => array(
-						"type" => "bool"
-						)
-				)
-			);
-	}
+                    "date_placed" => array(
+                        "type" => "text",
+                        "length" => "20"
+                        ),
+                    "archive" => array(
+                        "type" => "bool"
+                        )
+                )
+            );
+    }
 }
-?>

@@ -1,6 +1,5 @@
-<?
-$bpnames = array(
-	"articles"
-	);
+<?php
 
-?>
+$bpnames = array(
+    "articles"
+    );
