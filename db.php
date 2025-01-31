@@ -3,14 +3,14 @@ class db {
 	
 	//Parameters for connecting to DB(defined in individual db_local classes)
 	function db($user='',$pass='',$database=''){
-		$this->host = 'localhost';
+		$this->host = '127.0.0.1';
 		$this->user = $user;
 		$this->password = $pass;
 		$this->database = $database;	
 
 		//Connect and select the database
-		mysqli_connect($this->host,$this->user,$this->password);
-		mysqli_select_db($this->database);
+		mysql_connect($this->host,$this->user,$this->password);
+		mysql_select_db($this->database);
 	}
 	
 	function select($database){
