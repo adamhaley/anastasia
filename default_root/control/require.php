@@ -4,7 +4,6 @@ $webroot = '/var/www/html/';
 require $webroot . 'require.php';
 
 $path = dirname(__FILE__) . "/";
-//require "../../require.php";
 require $webroot. "website/require.php";
 
 require $path . "bparray.php";
@@ -16,10 +15,6 @@ for($i=0;$i<count($bpnames);$i++){
 	//Three paths to try
 
 	$localpath =  $path . $bpnames[$i] . ".php";
-    /*
-    $elementpath = "/php/element/" . $bpnames[$i] . ".php";
-	$websitepath = "/php/element/website/" . $bpnames[$i] . ".php";	
-    */
 
 	if(file_exists($localpath)){
 		require($localpath);

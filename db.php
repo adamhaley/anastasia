@@ -9,8 +9,8 @@ class db {
 		$this->database = $database;	
 
 		//Connect and select the database
-		mysql_connect($this->host,$this->user,$this->password);
-		mysql_select_db($this->database);
+		mysqli_connect($this->host,$this->user,$this->password);
+		mysqli_select_db($this->database);
 	}
 	
 	function select($database){
