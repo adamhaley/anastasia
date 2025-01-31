@@ -1,0 +1,6 @@
+<?
+$bpnames = array(
+	"articles"
+	);
+
+?>
