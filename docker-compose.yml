@@ -1,6 +1,6 @@
 services:
   mysqldb:
-    image: mysql:5.7.23
+    image: mysql:latest
     platform: linux/amd64
     build: ./docker/db
     volumes:

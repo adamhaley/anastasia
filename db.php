@@ -3,7 +3,7 @@ class db {
 	
 	//Parameters for connecting to DB(defined in individual db_local classes)
 	function db($user='root',$pass='password',$database='testsite'){
-		$this->host = '127.0.0.1';
+		$this->host = 'anastasia-real-mysqldb-1';
 		$this->user = $user;
 		$this->password = $pass;
 		$this->database = $database;	
