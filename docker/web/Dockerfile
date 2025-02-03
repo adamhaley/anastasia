@@ -14,6 +14,8 @@ RUN a2enmod rewrite
 RUN docker-php-ext-install mysql 
 RUN docker-php-ext-enable mysql
 
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-enable mysqli
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr --with-jpeg-dir=/usr --with-png-dir=/usr
 RUN docker-php-ext-install gd
 
