@@ -2,22 +2,21 @@ services:
   mysqldb:
     image: mysql:5.7.23
     platform: linux/amd64
+    build: ./docker/db
     volumes:
       - mysql_db_data:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: "MYSQL_ROOT_PASSWORD"
+      MYSQL_ROOT_PASSWORD: {MYSQL_ROOT}
       MYSQL_DATABASE: "testsite"
       MYSQL_USER: "root"
-      MYSQL_PASSWORD: "password"
   php-apache:
     depends_on:
       - mysqldb
-    build:
-      context: .
+    build: ./docker/web
     volumes:
-      - ./public_html:/var/www/html
+      - ./:/var/www/html
     ports:
       - 80:80
       - 443:443

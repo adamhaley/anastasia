@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 
-COPY ./ /var/www/html/
+COPY ../../ /var/www/html/
 
 RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
            -e 's|security.debian.org|archive.debian.org/|g' \
