@@ -8,15 +8,11 @@ class db {
 		$this->password = $pass;
 		$this->database = $database;	
 
-		//Connect and select the database
-		mysql_connect($this->host,$this->user,$this->password);
-		mysql_select_db($this->database);
+
+		$dir = 'sqlite:/' . dirname(__FILE__) . 'combadd.sqlite';
+		$this->dbh  = new PDO($dir);
 	}
 	
-	function select($database){
-		 mysql_select_db($database);
-
-	}
 	function generate_from_blueprint($bp) {
 		//This function generates a table from a blueprint object
 		

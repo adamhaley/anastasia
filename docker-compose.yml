@@ -10,7 +10,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT}
       MYSQL_DATABASE: "testsite"
-      MYSQL_USER: "root"
     networks:
       - my_network
   php-apache:
