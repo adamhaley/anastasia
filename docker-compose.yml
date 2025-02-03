@@ -8,9 +8,11 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: {MYSQL_ROOT}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT}
       MYSQL_DATABASE: "testsite"
       MYSQL_USER: "root"
+    networks:
+      - my_network
   php-apache:
     depends_on:
       - mysqldb
@@ -20,5 +22,10 @@ services:
     ports:
       - 80:80
       - 443:443
+    networks:
+      - my_network
 volumes:
   mysql_db_data: {}
+networks:
+  my_network:
+    driver: bridge
