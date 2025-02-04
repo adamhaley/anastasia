@@ -5,7 +5,7 @@ class cart {
 	var $mask;
 
 	function cart($sfile,$bp,$products,$co,$post_vars,$get_vars,$session_vars = '') {
-		session_register('products');
+		$_SESSION['products'] = $products;
 		$this->bp = $bp; //for this cart to work correctly, the bp must have a 'price' field
 		$this->mask = $bp->props[cart_mask];
 		$this->products = $products;

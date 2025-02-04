@@ -1,10 +1,9 @@
 <?
 require "require.php";
 
-
-session_register("p");
-session_register("sortby");
-session_register("what");
+$_SESSION['p'] = 1;
+$_SESSION['sortby'] = "id";
+$_SESSION['what'] = "";
 
 if($HTTP_GET_VARS[sortby]){
         $sortby = $HTTP_GET_VARS[sortby];

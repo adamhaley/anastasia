@@ -148,8 +148,8 @@ class frontend{
 		//note - this doesnt work yet...this is a wishlist feature for now
 		// need to figure out how to get certain cart configurations from the control area first
 		if(strstr($code,"<%cart%>")){
-			session_register('products');
-			session_register('co');
+			$_SESSION['products'] = array();
+			$_SESSION['co'] = array();
 
 			//$bp = new products;
 			$c = new cart($this->sfile,$bp,$products,$co,$this->post_vars,$this->get_vars,$this->session_vars);

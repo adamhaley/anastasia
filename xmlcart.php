@@ -2,7 +2,7 @@
 class xmlcart {
 	//this is a shopping cart that can handle elements from multiple blueprints, not just one	
 	function xmlcart($sfile,$products,$co,$post_vars,$get_vars,$session_vars = '') {
-		session_register('products');
+		$_SESSION['products'] = $products;
 		//for this cart to work correctly, the bp must have a 'price' field
 		$this->products = $products;
 		$this->co = $co;
