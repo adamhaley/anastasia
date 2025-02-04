@@ -1,5 +1,7 @@
 <?
 class db {
+	//This class is used to connect to the database and generate tables from blueprint objects
+	var $dbh;
 	
 	//Parameters for connecting to DB(defined in individual db_local classes)
 	function db($user='root',$pass='password',$database='testsite'){
@@ -27,15 +29,15 @@ class db {
 				$type = $value[type];
 				$length = '';
 				$kobj = $bp->keywords[$key];
-                        	if($type == 'keyword_list' || $type == 'keyword_select'){
-                                	$kobj = $keywords[$key];
-                                	eval("\$typeobj  = new $type(\$key,\$value,\$bp,\$kobj);");
-                        	}else if(class_exists($type)){
-                                	eval("\$typeobj = new $type(\$key,\$value,\$bp,\$http_vars,\$post_files);");
+				if($type == 'keyword_list' || $type == 'keyword_select'){
+						$kobj = $keywords[$key];
+						eval("\$typeobj  = new $type(\$key,\$value,\$bp,\$kobj);");
+				}else if(class_exists($type)){
+						eval("\$typeobj = new $type(\$key,\$value,\$bp,\$http_vars,\$post_files);");
 
-                        	}else{	
-                                	$typeobj = new type($key,$value,$bp,$http_vars);
-                        	}
+				}else{
+						$typeobj = new type($key,$value,$bp,$http_vars);
+				}
 				$st .= $typeobj->database_field();
 
 				$st .= ",";
@@ -51,23 +53,21 @@ class db {
 		if($this->table_exists($table)){
 			echo "Sorry, table $table already exists \n<br>";
 		}else{
-			mysql_query($st)
-				or die (mysql_error());
+			$this->dbh->query($st);
 			echo "$table created! \n<br>";
 		}
 	}
 	
 	function table_exists($table) {
-		$result = mysql_list_tables($this->database);
-		$i = 0;
-		while($i < mysql_num_rows($result)){
-			$t = mysql_tablename($result,$i);
-			if($t == $table){
-				return 1;
+		//This function checks to see if a table exists in the database
+		$st = "show tables";
+		$sth = $this->dbh->query($st);
+		while($row = $sth->fetch()){
+			if($row[0] == $table){
+				return true;
 			}
-			$i++;
 		}
-		return 0;
+		return false;
 	}
 	function generate_bps(){
 		if($this->table_exists('dbs')){
@@ -75,7 +75,7 @@ class db {
 			return false;
 		}else{
 			$q = 'create table bps(id int not null primary key default 0 auto_increment, name text)';
-			if(!mysql_query($q)){
+			if(!$this->dbh->query($q)){
 				echo "cound not create bps : " . mysql_error();
 			}else{	
 				echo "bps created!\n<br>";
@@ -86,22 +86,19 @@ class db {
                 while(list($key,$value) = each($bparray)){
 			if(!$this->value_exists('bps','name',$key)){
 				$q = "insert into bps values(null,\"$key\")";
-				mysql_query($q)
-					or die("could not populate bps " . mysql_error());
+				$this->dbh->query($q)
+					or die("could not populate bps ");
 			}
 		}
 	}
 	function value_exists($table,$field,$value){
 		$q = "select $field from $table";
-		$qh = mysql_query($q);
-		if($qh){
-			while($row = mysql_fetch_array($qh)){
-				if($row[name] == $value){
-					return true;
-				}
+		while($row = $this->dbh->query($q)){
+			if($row[name] == $value){
+				return true;
 			}
-			return false;
 		}
+		return false;
 		return false;
 	}
 }

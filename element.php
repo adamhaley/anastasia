@@ -13,6 +13,7 @@ class element {
 	var $id;
 
 	function element($bp,$id = ''){
+		global $db;
 		$this->bp = $bp;
 		while(list($key,$value) = each($bp->props[fields])){
 			$this->props[$key] = '';
@@ -24,15 +25,10 @@ class element {
 			$table = $bp->props[table];
 			$st = "select * from $table where id = $id";
 			//echo "st is $st \n<br>";
-			$sth = mysql_query($st);
-			if($sth){
-				while($row = mysql_fetch_array($sth)){
-					while(list($key,$value) = each($this->props)){
-						$this->props[$key] = stripslashes($row[$key]);
-					}
+			while($row = $db->dbh->query($st)){
+				while(list($key,$value) = each($this->props)){
+					$this->props[$key] = stripslashes($row[$key]);
 				}
-			}else{
-				echo "Database Error in element:" . mysql_error();
 			}
 		}else{
 		//This is a brand new element. Set the new flag to 1
@@ -167,7 +163,9 @@ class element {
 			$st .= " where id = $id";
 			//echo "update query is $st \n<br>";
 		}
-		if(!mysql_query($st)){
+
+		global $db;
+		if(!$db->dbh->query($st)){
 			 return "Error: Could not update Database \n<br>" . mysql_error();
 		}else{
 			$name = $this->name;
@@ -188,7 +186,9 @@ class element {
 		$table = $bp->props[table];
 		$name = $this->name;	
 		$id = $this->id;	
-		
+		global $db;
+
+
 		$st = "delete from $table where id = $id";
 		
 		//delete any files from hard disk
@@ -205,7 +205,7 @@ class element {
 
 		}	
 	
-		if(!mysql_query($st)){
+		if(!$db->dbh->query($st)){
 			$msg .= "Database error, $name $id could not be deleted \n<br>";
 		}else{	
 			$msg .= "$name  $id successfully deleted from database \n<br>";
@@ -237,10 +237,8 @@ class element {
 			$q .= "$key = \"$value\" &&";
 		}
 		$q = preg_replace("/&&$/","",$q);
-		$qh = mysql_query($q)
-			or die ("mysql error in element::populate_from_profile" . mysql_error());
-		
-		if($r = mysql_fetch_array($qh)){
+
+		if($r = $db->dbh->query($q)){
 			//if it finds a matching record, populate the element from it.
 			while(list($k,$v) = each($this->props)){
 				if($r[$k]){
