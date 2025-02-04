@@ -303,8 +303,8 @@ class admin {
 		}else if($action == 'archive'){
 			return $this->archive_element($what,$id);
 		}else if($action == 'init'){
-                        return $this->generate_db();
-                }else if($action == 'publish'){
+			return $this->generate_db();
+		}else if($action == 'publish'){
 			return $this->publish_site();
 		}else if($action=='search'){
 			return $this->search($what);
@@ -645,14 +645,17 @@ r>";
 
 	function generate_db(){
 		//echo "hello";
-                while(list($key,$value) = each($this->bps)){
-          		echo "$key : $value \n<br>";
-		        $l = $this->local;
+		$db = new db;
+		echo get_class( $db);
+		die;
+		while(list($key,$value) = each($this->bps)){
+			echo "$key : $value \n<br>";
+			$l = $this->local;
 			$db = $l->props['db'];
 			echo "db is $db ";
-                        $db->generate_from_blueprint($value);
-                }
-        }
+			$db->generate_from_blueprint($value);
+		}
+	}
 	function publish_site(){
 		$l = new local;
 		$f= $l->props[frontend] ? $l->props[frontend] : new frontend('','',array(),array());

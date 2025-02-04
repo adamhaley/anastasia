@@ -6,7 +6,7 @@ class db {
 	//Parameters for connecting to DB(defined in individual db_local classes)
 	function db($user='root',$pass='password',$database='testsite'){
 
-		$dir = 'sqlite:/' . dirname(__FILE__) . '/testsite.sqlite';
+		$dir = 'sqlite:' . dirname(__FILE__) . '/testsite.sqlite';
 		//echo $dir;
 		//die;
 		$this->dbh  = new PDO($dir);
@@ -48,21 +48,21 @@ class db {
 		$st = preg_replace("/,$/","",$st);
 		$st .= ")";
 		
-		//echo "ST is $st \n<br>";
+		echo "$st \n<br>";
 		//If the table already exists don't run the query
-		if($this->table_exists($table)){
-			echo "Sorry, table $table already exists \n<br>";
-		}else{
-			$this->dbh->query($st);
-			echo "$table created! \n<br>";
+
+		try{
+			$this->dbh->exec($st);
+		}catch(PDOException $e){
+			echo $e->getMessage();
 		}
+		echo "$table created! \n<br>";
 	}
 	
 	function table_exists($table) {
 		//This function checks to see if a table exists in the database
 		$st = "show tables";
-		$sth = $this->dbh->query($st);
-		while($row = $sth->fetch()){
+		while($row = $this->dbh->query($st)){
 			if($row[0] == $table){
 				return true;
 			}
@@ -70,12 +70,12 @@ class db {
 		return false;
 	}
 	function generate_bps(){
-		if($this->table_exists('dbs')){
+		if($this->table_exists('bps')){
 			echo "Sorry,bps already exists \n<br>";
 			return false;
 		}else{
 			$q = 'create table bps(id int not null primary key default 0 auto_increment, name text)';
-			if(!$this->dbh->query($q)){
+			if(!$this->dbh->exec($q)){
 				echo "cound not create bps : " . mysql_error();
 			}else{	
 				echo "bps created!\n<br>";

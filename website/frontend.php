@@ -609,7 +609,7 @@ class frontend{
 	function frontend_final_stuff($code){
 		//override this for any final string replacing or whatever
 		//this is the LAST STOP before the code is output
-		$code = str_replace('<%copyrightyear%>',date('Y'),$code);
+		$code = str_replace('<%copyrightyear%>','2025',$code);
 
 		return $code;
 	}

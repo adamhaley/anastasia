@@ -228,9 +228,9 @@ class element {
 		//if it finds one it populates the element from it.
 	
 		$bp = $this->bp;
-		$db = $bp->props[db];
-                $table = $bp->props[table];
-                $fields = $bp->props[fields];
+		$db = new db;
+		$table = $bp->props[table];
+		$fields = $bp->props[fields];
 
 		$q = "select * from $table where ";
 		while(list($key,$value) = each($profile)){

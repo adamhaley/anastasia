@@ -1,7 +1,7 @@
 <?
 require "require.php";
 
-$db = new db_local;
+$db = new db;
 
 $bps = new bplist;
 $bparray = $bps->keys_as_array();
