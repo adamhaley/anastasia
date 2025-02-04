@@ -3,13 +3,10 @@ class db {
 	
 	//Parameters for connecting to DB(defined in individual db_local classes)
 	function db($user='root',$pass='password',$database='testsite'){
-		$this->host = 'anastasia-real-mysqldb-1';
-		$this->user = $user;
-		$this->password = $pass;
-		$this->database = $database;	
 
-
-		$dir = 'sqlite:/' . dirname(__FILE__) . 'combadd.sqlite';
+		$dir = 'sqlite:/' . dirname(__FILE__) . '/testsite.sqlite';
+		//echo $dir;
+		//die;
 		$this->dbh  = new PDO($dir);
 	}
 	

@@ -2,6 +2,9 @@ FROM php:5.6-apache
 
 COPY ../../ /var/www/html/
 
+# Set document root permissions
+RUN chown -R www-data:www-data /var/www/html
+
 RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
            -e 's|security.debian.org|archive.debian.org/|g' \
            -e '/stretch-updates/d' /etc/apt/sources.list
