@@ -32,7 +32,7 @@ $a = new padmin(array(
 		)
 	);
 
-$a->generate_db();
+//$a->generate_db();
 
 $admin =  $a->start();
 $admin .=  $a->nav();

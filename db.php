@@ -4,12 +4,14 @@ class db {
 	var $dbh;
 	
 	//Parameters for connecting to DB(defined in individual db_local classes)
-	function db($user='root',$pass='password',$database='testsite'){
-
+	function db($host = 'mysql:host=127.0.0.1',$user='root',$pass='password',$database='testsite'){
+		//sqlite
 		$dir = 'sqlite:' . dirname(__FILE__) . '/testsite.sqlite';
-		//echo $dir;
-		//die;
 		$this->dbh  = new PDO($dir);
+
+		//mysql
+//		$this->dbh = new PDO($host.';dbname=' . $database,$user,$pass);
+
 	}
 	
 	function generate_from_blueprint($bp) {

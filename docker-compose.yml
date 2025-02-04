@@ -1,27 +1,11 @@
 services:
-  mysqldb:
-    image: mysql:latest
-    platform: linux/amd64
-    build: ./docker/db
-    volumes:
-      - mysql_db_data:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT}
-      MYSQL_DATABASE: "testsite"
-    networks:
-      - my_network
   php-apache:
-    depends_on:
-      - mysqldb
     build: ./docker/web
     volumes:
       - ./:/var/www/html
     ports:
       - 80:80
       - 443:443
-      - 2222:22
     networks:
       - my_network
 volumes:
