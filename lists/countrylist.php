@@ -1,11 +1,10 @@
 <?
 class countrylist extends keywords{
 	function countrylist($name){
-		$db = new db_local;
-		$db->select('info');		
+		$db = new db;
 
-		$qh = mysql_query("select * from country");
-		while($row = mysql_fetch_array($qh)){
+		$st = "select * from country";
+		while($row = $db->dbh->query($st)){
 			$array[] = stripslashes($row['name']);
 		}
 		$this->keywords($array,$name);

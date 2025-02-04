@@ -1,10 +1,10 @@
 <?
 class statelist extends keywords{
 	function statelist($name){
-		$db = new info_db;
-		
-		$qh = mysql_query("select * from states");
-		while($row = mysql_fetch_array($qh)){
+		$db = new db;
+
+		$st = "select * from states";
+		while($row = $db->dbh->query($qh)){
 			$array[] = stripslashes($row['name']);
 		}
 		$this->keywords($array,$name);

@@ -1,10 +1,10 @@
 <?
 class bplist extends keywords{
 	function bplist($name = ''){
-		global $db;		
+		$db = new db;
 
-		$qh = mysql_query("select * from bps");
-		while($row = mysql_fetch_array($qh)){
+		$st = "select * from bps";
+		while($row = $db->dbh->query($st)){
 			$tmp[] = stripslashes($row[name]);
 		}
 		$this->keywords($tmp,$name);
